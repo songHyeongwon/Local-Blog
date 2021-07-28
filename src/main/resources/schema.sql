@@ -6,7 +6,7 @@ CREATE TABLE member (
                        contract_number VARCHAR(50) NOT NULL,
                        create_datetime TIMESTAMP NOT NULL,
                        update_datetime TIMESTAMP NOT NULL,
-                       PRIMARY KEY (name)
+                       PRIMARY KEY (id)
 );
 
 INSERT INTO member (name, password, auth, contract_number, create_datetime, update_datetime) VALUES
