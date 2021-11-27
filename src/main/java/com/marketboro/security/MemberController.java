@@ -30,7 +30,7 @@ public class MemberController {
 		if(findName == null) {
 			members = memberRepository.findAll();
 		} else {
-			members = memberRepository.findByNameLike(findName);
+			members = memberRepository.findByNameLike(findName + "%");
 		}
 		//디버깅용
 		/*for (int i = 0; i < members.size(); i++) {
