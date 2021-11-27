@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Marketboro Test Page</title>
+</head>
+<body>
+
+<h1>Marketboro Test Page</h1>
+<h2>회원가입 화면입니다.</h2>
+
+<form method="get" action="/signup">
+  <input type="text" name="id"/><br/>
+  <input type="password" name="password"/><br/>
+  <input type="text" name="name"/><br/>
+  <input type="number" name="contractNumber"/><br/>
+  <input type="hidden" name="auth" value="ROLE_MEMBER"/><br/>
+  <input type="submit" value="제출">
+</form>
+</body>
+</html>
