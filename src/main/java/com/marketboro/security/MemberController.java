@@ -1,9 +1,7 @@
 package com.marketboro.security;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -41,9 +39,28 @@ public class MemberController {
 		return "user";
 	}
 
+	@GetMapping("/signup")
+	public String signup(@RequestParam Map<String, String> param) {
+		Member member = new Member();
+		member.setId(				memberRepository.count()+1);
+		member.setName(				(String)param.get("name"));
+		member.setPassword(			(String)param.get("password"));
+		member.setContractNumber(	(String)param.get("contractNumber"));
+		member.setAuth(				(String)param.get("auth"));
+		member.setCreateDatetime(LocalDateTime.now());
+		member.setUpdateDatetime(LocalDateTime.now());
+		System.out.println(member.toString());
+		memberRepository.save(member);
+		return "index";
+	}
+
 	@GetMapping("/admin")
-	public String admin() {
+	public String admin(@RequestParam Map<String, String> param) {
 		return "admin";
 	}
 
+	@GetMapping("/join")
+	public String join() {
+		return "join";
+	}
 }

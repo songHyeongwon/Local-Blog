@@ -25,7 +25,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 public class Member implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//의존성 시스템
 	private Long id;
 
 	private String name;
