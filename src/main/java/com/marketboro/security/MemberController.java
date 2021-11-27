@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,16 +28,12 @@ public class MemberController {
 		System.out.println("name = " + param.get("name"));
 		String findName = (String)param.get("name");
 		List<Member> members = null;
+
 		if(findName == null) {
 			members = memberRepository.findAll();
 		} else {
 			members = memberRepository.findByNameLike(findName + "%");
 		}
-		//디버깅용
-		/*for (int i = 0; i < members.size(); i++) {
-			System.out.println(members.get(i).toString());
-		}*/
-
 		model.put("members", members);
 		return "user";
 	}
@@ -57,6 +56,11 @@ public class MemberController {
 	@GetMapping("/admin")
 	public String admin(@RequestParam Map<String, String> param) {
 		return "admin";
+	}
+
+	@GetMapping("/main")
+	public String main(@RequestParam Map<String, String> param) {
+		return "main";
 	}
 
 	@GetMapping("/join")
