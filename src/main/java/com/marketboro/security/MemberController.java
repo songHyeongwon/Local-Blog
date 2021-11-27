@@ -38,14 +38,14 @@ public class MemberController {
 		return "user";
 	}
 
-	@GetMapping("/signup")
-	public String signup(@RequestParam Map<String, String> param) {
+	@GetMapping("/save")
+	public String save(@RequestParam Map<String, String> param) {
 		Member member = new Member();
 		member.setId(				memberRepository.count()+1);
 		member.setName(				(String)param.get("name"));
 		member.setPassword(			(String)param.get("password"));
 		member.setContractNumber(	(String)param.get("contractNumber"));
-		member.setAuth(				(String)param.get("auth"));
+		member.setAuth(				"ROLE_MEMBER"); //사용자
 		member.setCreateDatetime(LocalDateTime.now());
 		member.setUpdateDatetime(LocalDateTime.now());
 		System.out.println(member.toString());
@@ -53,10 +53,28 @@ public class MemberController {
 		return "index";
 	}
 
+	@GetMapping("/admin/saveAdmin")
+	public String saveAdmin(@RequestParam Map<String, String> param) {
+		Member member = new Member();
+		member.setId(				memberRepository.count()+1);
+		member.setName(				(String)param.get("name"));
+		member.setPassword(			(String)param.get("password"));
+		member.setContractNumber(	(String)param.get("contractNumber"));
+		member.setAuth(				"ROLE_ADMIN"); //사용자
+		member.setCreateDatetime(LocalDateTime.now());
+		member.setUpdateDatetime(LocalDateTime.now());
+		System.out.println(member.toString());
+		memberRepository.save(member);
+		return "main";
+	}
+
 	@GetMapping("/admin")
 	public String admin(@RequestParam Map<String, String> param) {
 		return "admin";
 	}
+
+	@GetMapping("/admin/createMember")
+	public String createMember(@RequestParam Map<String, String> param) { return "createMember";}
 
 	@GetMapping("/main")
 	public String main(@RequestParam Map<String, String> param) {
