@@ -21,5 +21,4 @@ public class MemberService implements UserDetailsService {
 		Member member = memberRepository.findByName(username).orElseThrow(RuntimeException::new);
 		return new MyUserPrincipal(member);
 	}
-
 }

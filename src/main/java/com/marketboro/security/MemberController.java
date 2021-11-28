@@ -2,6 +2,8 @@ package com.marketboro.security;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -60,7 +62,7 @@ public class MemberController {
 	}
 
 	@GetMapping("/save")
-	public String save(@RequestParam Map<String, String> param) {
+	public String save(Map<String, Object> model , @RequestParam Map<String, String> param) {
 		Member member = new Member();
 		member.setId(				memberRepository.count()+1);
 		member.setName(				(String)param.get("name"));
@@ -69,13 +71,20 @@ public class MemberController {
 		member.setAuth(				"ROLE_MEMBER"); //사용자
 		member.setCreateDatetime(LocalDateTime.now());
 		member.setUpdateDatetime(LocalDateTime.now());
+
+		String memberCheckResult = memberCheck(member); //객체의 회원가입을 체크한다
+		if(memberCheckResult != null) { //메세지가 있다면 회원가입 할수없는 메세지내용을 담고있다.
+			model.put("message" , memberCheckResult);
+			return "join";
+		}
+
 		System.out.println(member.toString());
 		memberRepository.save(member);
-		return "/index";
+		return "index";
 	}
 
 	@GetMapping("/admin/saveAdmin")
-	public String saveAdmin(@RequestParam Map<String, String> param) {
+	public String saveAdmin(Map<String, Object> model , @RequestParam Map<String, String> param) {
 		Member member = new Member();
 		member.setId(				memberRepository.count()+1);
 		member.setName(				(String)param.get("name"));
@@ -84,6 +93,13 @@ public class MemberController {
 		member.setAuth(				"ROLE_ADMIN"); //사용자
 		member.setCreateDatetime(LocalDateTime.now());
 		member.setUpdateDatetime(LocalDateTime.now());
+
+		String memberCheckResult = memberCheck(member); //객체의 회원가입을 체크한다
+		if(memberCheckResult != null) { //메세지가 있다면 회원가입 할수없는 메세지내용을 담고있다.
+			model.put("message" , memberCheckResult);
+			return "createMember";
+		}
+
 		System.out.println(member.toString());
 		memberRepository.save(member);
 		return "main";
@@ -105,6 +121,25 @@ public class MemberController {
 	@GetMapping("/join")
 	public String join() {
 		return "join";
+	}
+
+	//회원가입할 객체를 검사합니다.
+	public String memberCheck(Member member) {
+		//1. 동일ID여부 검사
+		if(memberRepository.countByName(member.getName()) > 0) {
+			return "동일한 ID가 존재합니다.";
+		}
+
+		//2. 정규표현식 영문 대문자, 영문 소문자, 숫자, 특수문자 모두 1개 이상 포함 하도록 체크 해주세요.
+		if(!isNumeric(member.getPassword().replace("{noop}", ""))) {
+			return "영문 대문자, 영문 소문자, 숫자, 특수문자 모두 1개 이상 포함 필수입니다.";
+		}
+		return null;//최종통과
+	}
+	public boolean isNumeric(String psw) {
+		Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&]{4,}");
+		Matcher m = p.matcher(psw);
+		return m.matches();
 	}
 
 	/*@GetMapping("/logout") //만들긴 했지만 기본 로그아웃 이용

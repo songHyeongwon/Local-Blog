@@ -14,4 +14,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	Page<Member> findByNameLike(String userName , Pageable pageable);
 
 	long countByNameLike(String userName);
+	long countByName(String userName);
 }
