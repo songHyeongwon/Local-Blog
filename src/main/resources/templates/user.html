@@ -12,13 +12,23 @@
 
 </head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script>
+<script th:inline="javascript">
   $( document ).ready( function() {
     $("#search").click(function(){
       location.href = "/user/list?page=1&name=" + $("#userName").val();
     });
+
     $(".page").click(function(event){
       location.href = "/user/list?page=" + $(event.target).html() + "&name=" + $("#userName").val();
+    });
+
+    $("#fristPage").click(function(event){
+      location.href = "/user/list?page=1&name=" + $("#userName").val();
+    });
+
+    $("#lsatPage").click(function(event){
+      let last = /*[[ ${allcnt / 5 + 1} ]]*/;
+      location.href = "/user/list?page=" + last + "&name=" + $("#userName").val();
     });
   });
 </script>
@@ -51,8 +61,14 @@
   </tr>
 </table>
 <ul class="pagination">
+  <li>
+    <a id="fristPage">시작</a>
+  </li>
   <li th:each="m : ${#numbers.sequence(0 , allcnt / 5)}" >
     <a class="page" th:text="${m+1}"></a>
+  </li>
+  <li>
+    <a id="lsatPage">종료</a>
   </li>
 </ul>
 </body>
