@@ -32,27 +32,27 @@ public class MemberController {
 		//List<Member> members = null;
 		
 		int pageCnt = 0;//선택한 페이징
-		long allCnt = 0;
+		long allCnt = 0;//페이징 갯수
+		int pageRow = 5;//페이지당 보여줄 데이터 수량
 		try{
 			pageCnt = Integer.parseInt(param.get("page")) -1; //인덱스 차이로 첫페이지는 0부터
 		}catch(Exception e) {
 			pageCnt = 0;
 		}
 
-		Pageable pageable = PageRequest.of(pageCnt, 5); //페이징 처리 테스트
+		Pageable pageable = PageRequest.of(pageCnt, pageRow); //페이징 처리 테스트
 		Page<Member> page = null;
 		if(findName == null) {
 			page = memberRepository.findAll(pageable);
 			allCnt = memberRepository. count();
-
 		} else {
 			page = memberRepository.findByNameLike(findName + "%" , pageable);
 			allCnt = memberRepository.countByNameLike(findName + "%");
 		}
-		if(allCnt % 5 == 0) {
-			allCnt = allCnt / 5;
+		if(allCnt % pageRow == 0) {
+			allCnt = allCnt / pageRow;
 		} else {
-			allCnt = allCnt / 5 + 1;
+			allCnt = allCnt / pageRow + 1;
 		}
 		model.put("allcnt", allCnt);
 		model.put("findName" , findName);
