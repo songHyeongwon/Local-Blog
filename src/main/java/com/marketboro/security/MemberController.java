@@ -9,9 +9,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
@@ -26,35 +34,17 @@ public class MemberController {
 	}
 
 	@GetMapping("/user/list")
-	public String users(Map<String, Object> model, @RequestParam Map<String, String> param) {
-		System.out.println("name = " + param.get("name"));
+	public String users(Map<String, Object> model, @RequestParam Map<String, String> param , @PageableDefault(size = 5) Pageable pageable) {
 		String findName = (String)param.get("name");
-		//List<Member> members = null;
-		
-		int pageCnt = 0;//선택한 페이징
-		long allCnt = 0;//페이징 갯수
-		int pageRow = 5;//페이지당 보여줄 데이터 수량
-		try{
-			pageCnt = Integer.parseInt(param.get("page")) -1; //인덱스 차이로 첫페이지는 0부터
-		}catch(Exception e) {
-			pageCnt = 0;
-		}
-
-		Pageable pageable = PageRequest.of(pageCnt, pageRow); //페이징 처리 테스트
 		Page<Member> page = null;
 		if(findName == null) {
 			page = memberRepository.findAll(pageable);
-			allCnt = memberRepository. count();
 		} else {
 			page = memberRepository.findByNameLike(findName + "%" , pageable);
-			allCnt = memberRepository.countByNameLike(findName + "%");
 		}
-		if(allCnt % pageRow == 0) {
-			allCnt = allCnt / pageRow;
-		} else {
-			allCnt = allCnt / pageRow + 1;
-		}
-		model.put("allcnt", allCnt);
+		//페이징 처리
+		model.put("startPage" 	, Math.max(0,page.getPageable().getPageNumber() -4));
+		model.put("endPage" 	, Math.min(page.getTotalPages()-1 , page.getPageable().getPageNumber() +4));
 		model.put("findName" , findName);
 		model.put("members", page);
 
@@ -123,6 +113,19 @@ public class MemberController {
 		return "join";
 	}
 
+	//세션에 이전페이지 넣기
+	/*@GetMapping("/login")
+	public String loginForm(HttpServletRequest req) {
+		String referer = req.getHeader("Referer");
+		req.getSession().setAttribute("prevPage", referer);
+		return "login";
+	}*/
+	//로그아웃
+	@GetMapping("/logout")
+	public String logoutPage(HttpServletRequest req , HttpServletResponse rep) {
+		new SecurityContextLogoutHandler().logout(req, rep , SecurityContextHolder.getContext().getAuthentication());
+		return "/";
+	}
 
 	/********************************************************************************************************************************************
 	 * 여기서부터 유틸리티 함수모음

@@ -15,19 +15,21 @@
 <script th:inline="javascript">
   $( document ).ready( function() {
     $("#search").click(function(){
-      location.href = "/user/list?page=1&name=" + $("#userName").val();
+      location.href = "/user/list?page=0&name=" + $("#userName").val();
     });
 
     $(".page").click(function(event){
-      location.href = "/user/list?page=" + $(event.target).html() + "&name=" + $("#userName").val();
+      let page = parseInt($(event.target).html()) -1;
+      location.href = "/user/list?page=" + page + "&name=" + $("#userName").val();
     });
     //시작 페이지
     $("#fristPage").click(function(event){
-      location.href = "/user/list?page=1&name=" + $("#userName").val();
+      let start = /*[[ ${startPage} ]]*/;
+      location.href = "/user/list?page=" + start + "&name=" + $("#userName").val();
     });
     //마지막 페이지
     $("#lsatPage").click(function(event){
-      let last = /*[[ ${allcnt} ]]*/;
+      let last = /*[[ ${endPage} ]]*/;
       location.href = "/user/list?page=" + last + "&name=" + $("#userName").val();
     });
   });
@@ -36,6 +38,7 @@
 
 <h1>Marketboro Admin Page</h1>
 <h2>유저 리스트 화면</h2>
+<h3>총건수 : <span th:text="${members.getTotalElements}"></span>건</h3>
 <a href="/login?logout">로그아웃</a>
 <input type="text" name="name" id="userName" th:value="${findName}"/> <button id="search">조회</button>
 
@@ -63,14 +66,14 @@
     </tr>
   </tbody>
 </table>
-<ul class="pagination">
-  <li>
+<ul class="pagination justify-content-center">
+  <li class="page-item">
     <a id="fristPage">시작</a>
   </li>
-  <li th:each="m : ${#numbers.sequence(1 , allcnt)}" >
-    <a class="page" th:text="${m}"></a>
+  <li th:each="i : ${#numbers.sequence(startPage , endPage)}" class="page-item" th:classappend="${i == members.pageable.pageNumber} ? 'disabled'">
+    <a class="page" th:text="${i+1}"></a>
   </li>
-  <li>
+  <li class="page-item">
     <a id="lsatPage">종료</a>
   </li>
 </ul>
