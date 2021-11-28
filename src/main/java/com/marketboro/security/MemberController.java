@@ -4,15 +4,13 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,14 +27,33 @@ public class MemberController {
 	public String users(Map<String, Object> model, @RequestParam Map<String, String> param) {
 		System.out.println("name = " + param.get("name"));
 		String findName = (String)param.get("name");
-		List<Member> members = null;
-
-		if(findName == null) {
-			members = memberRepository.findAll();
-		} else {
-			members = memberRepository.findByNameLike(findName + "%");
+		//List<Member> members = null;
+		
+		int pageCnt = 0;//선택한 페이징
+		long allCnt = 0;
+		try{
+			pageCnt = Integer.parseInt(param.get("page")) -1; //인덱스 차이로 첫페이지는 0부터
+		}catch(Exception e) {
+			pageCnt = 0;
 		}
-		model.put("members", members);
+
+		Pageable pageable = PageRequest.of(pageCnt, 5); //페이징 처리 테스트
+		Page<Member> page = null;
+		if(findName == null) {
+			page = memberRepository.findAll(pageable);
+			allCnt = memberRepository. count();
+
+		} else {
+			page = memberRepository.findByNameLike(findName + "%" , pageable);
+			allCnt = memberRepository.countByNameLike(findName + "%");
+		}
+		System.out.println(page.toString());
+		model.put("allcnt", allCnt);
+		model.put("findName" , findName);
+		model.put("page", page);
+		model.put("members", page);
+
+
 		return "user";
 	}
 

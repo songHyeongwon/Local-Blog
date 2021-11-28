@@ -3,12 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Marketboro Admin Page</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
   $( document ).ready( function() {
     $("#search").click(function(){
-      location.href = "/user/list?name=" + $("#userName").val();
+      location.href = "/user/list?page=1&name=" + $("#userName").val();
+    });
+    $(".page").click(function(event){
+      location.href = "/user/list?page=" + $(event.target).html() + "&name=" + $("#userName").val();
     });
   });
 </script>
@@ -17,7 +27,11 @@
 <h1>Marketboro Admin Page</h1>
 <h2>유저 리스트 화면</h2>
 <a href="/login?logout">로그아웃</a>
-<input type="text" name="name" id="userName"/> <button id="search">조회</button>
+<input type="text" name="name" id="userName" th:value="${findName}"/> <button id="search">조회</button>
+
+<h1 th:text="${allcnt}">건</h1>
+<h1 th:text="${page}"></h1>
+
 <table>
   <tr>
     <th>id</th>
@@ -36,5 +50,10 @@
     <td th:text="${member.updateDatetime}"></td>
   </tr>
 </table>
+<ul class="pagination">
+  <li th:each="m : ${#numbers.sequence(0 , allcnt / 5)}" >
+    <a class="page" th:text="${m+1}"></a>
+  </li>
+</ul>
 </body>
 </html>
