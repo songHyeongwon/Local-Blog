@@ -42,23 +42,27 @@
 <h1 th:text="${allcnt}">건</h1>
 <h1 th:text="${page}"></h1>
 
-<table>
-  <tr>
-    <th>id</th>
-    <th>이름</th>
-    <th>권한</th>
-    <th>연락처</th>
-    <th>가입일</th>
-    <th>수정일</th>
-  </tr>
-  <tr th:each="member : ${members}">
-    <td th:text="${member.id}"></td>
-    <td th:text="${member.name}"></td>
-    <td th:text="${member.auth}"></td>
-    <td th:text="${member.contractNumber}"></td>
-    <td th:text="${member.createDatetime}"></td>
-    <td th:text="${member.updateDatetime}"></td>
-  </tr>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>이름</th>
+      <th>권한</th>
+      <th>연락처</th>
+      <th>가입일</th>
+      <th>수정일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="member : ${members}">
+      <td th:text="${member.id}"></td>
+      <td th:text="${member.name}"></td>
+      <td th:text="${member.auth}"></td>
+      <td th:text="${member.contractNumber}"></td>
+      <td th:text="${member.createDatetime}"></td>
+      <td th:text="${member.updateDatetime}"></td>
+    </tr>
+  </tbody>
 </table>
 <ul class="pagination">
   <li>
