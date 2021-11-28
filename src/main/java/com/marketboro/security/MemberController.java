@@ -4,13 +4,15 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequiredArgsConstructor
@@ -85,4 +87,17 @@ public class MemberController {
 	public String join() {
 		return "join";
 	}
+
+	/*@GetMapping("/logout") //만들긴 했지만 기본 로그아웃 이용
+	public String loout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(auth.toString());
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "index";
+	}*/
+
+
+	//출처: https://baejangho.com/entry/Spring-Security-Logout [호짱의 개발 블로그]
 }
