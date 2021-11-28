@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http
 				.authorizeRequests()
-				.antMatchers("/",  "/index**", "/join**", "/login**").permitAll() //전체 접근 허용
+				.antMatchers("/",  "/index**", "/join**", "/login**" ,"/save**").permitAll() //전체 접근 허용
 				//.antMatchers("/user/*").hasRole("MEMBER")
 				.antMatchers("/admin**").hasRole("ADMIN") //관리자만
 				.anyRequest().authenticated()

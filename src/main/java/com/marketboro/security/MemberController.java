@@ -62,14 +62,14 @@ public class MemberController {
 		Member member = new Member();
 		member.setId(				memberRepository.count()+1);
 		member.setName(				(String)param.get("name"));
-		member.setPassword(			(String)param.get("password"));
+		member.setPassword(			("{noop}")+(String)param.get("password"));
 		member.setContractNumber(	(String)param.get("contractNumber"));
 		member.setAuth(				"ROLE_MEMBER"); //사용자
 		member.setCreateDatetime(LocalDateTime.now());
 		member.setUpdateDatetime(LocalDateTime.now());
 		System.out.println(member.toString());
 		memberRepository.save(member);
-		return "index";
+		return "/index";
 	}
 
 	@GetMapping("/admin/saveAdmin")
@@ -77,7 +77,7 @@ public class MemberController {
 		Member member = new Member();
 		member.setId(				memberRepository.count()+1);
 		member.setName(				(String)param.get("name"));
-		member.setPassword(			(String)param.get("password"));
+		member.setPassword(			("{noop}")+(String)param.get("password"));
 		member.setContractNumber(	(String)param.get("contractNumber"));
 		member.setAuth(				"ROLE_ADMIN"); //사용자
 		member.setCreateDatetime(LocalDateTime.now());
