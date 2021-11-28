@@ -21,13 +21,13 @@
     $(".page").click(function(event){
       location.href = "/user/list?page=" + $(event.target).html() + "&name=" + $("#userName").val();
     });
-
+    //시작 페이지
     $("#fristPage").click(function(event){
       location.href = "/user/list?page=1&name=" + $("#userName").val();
     });
-
+    //마지막 페이지
     $("#lsatPage").click(function(event){
-      let last = /*[[ ${allcnt / 5 + 1} ]]*/;
+      let last = /*[[ ${allcnt} ]]*/;
       location.href = "/user/list?page=" + last + "&name=" + $("#userName").val();
     });
   });
@@ -39,12 +39,10 @@
 <a href="/login?logout">로그아웃</a>
 <input type="text" name="name" id="userName" th:value="${findName}"/> <button id="search">조회</button>
 
-<h1 th:text="${allcnt}">건</h1>
-<h1 th:text="${page}"></h1>
-
 <table class="table">
   <thead>
     <tr>
+      <th>순번</th>
       <th>id</th>
       <th>이름</th>
       <th>권한</th>
@@ -54,7 +52,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr th:each="member : ${members}">
+    <tr th:each="member, index : ${members}">
+      <td th:text="${index.index + 1}"></td>
       <td th:text="${member.id}"></td>
       <td th:text="${member.name}"></td>
       <td th:text="${member.auth}"></td>
@@ -68,8 +67,8 @@
   <li>
     <a id="fristPage">시작</a>
   </li>
-  <li th:each="m : ${#numbers.sequence(0 , allcnt / 5)}" >
-    <a class="page" th:text="${m+1}"></a>
+  <li th:each="m : ${#numbers.sequence(1 , allcnt)}" >
+    <a class="page" th:text="${m}"></a>
   </li>
   <li>
     <a id="lsatPage">종료</a>

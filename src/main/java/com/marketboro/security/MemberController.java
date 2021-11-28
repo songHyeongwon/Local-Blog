@@ -47,12 +47,14 @@ public class MemberController {
 			page = memberRepository.findByNameLike(findName + "%" , pageable);
 			allCnt = memberRepository.countByNameLike(findName + "%");
 		}
-		System.out.println(page.toString());
+		if(allCnt % 5 == 0) {
+			allCnt = allCnt / 5;
+		} else {
+			allCnt = allCnt / 5 + 1;
+		}
 		model.put("allcnt", allCnt);
 		model.put("findName" , findName);
-		model.put("page", page);
 		model.put("members", page);
-
 
 		return "user";
 	}
