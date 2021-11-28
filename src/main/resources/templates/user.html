@@ -4,10 +4,20 @@
   <meta charset="UTF-8">
   <title>Marketboro Admin Page</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+  $( document ).ready( function() {
+    $("#search").click(function(){
+      location.href = "/user/list?name=" + $("#userName").val();
+    });
+  });
+</script>
 <body>
 
 <h1>Marketboro Admin Page</h1>
 <h2>유저 리스트 화면</h2>
+<a href="/login?logout">로그아웃</a>
+<input type="text" name="name" id="userName"/> <button id="search">조회</button>
 <table>
   <tr>
     <th>id</th>
