@@ -20,6 +20,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	MemberLoginSuccessHandler memberLoginSuccessHandler;
+
+	@Autowired
+	MemberLoginFailHandler memberLoginFailHandler;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -32,7 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and().formLogin()
 				.loginPage("/login") //로그인 화면
 				.loginProcessingUrl("/login") //프로세스 URL
-				.defaultSuccessUrl("/main"); //로그인 후
+				//.defaultSuccessUrl("/main") //로그인 후
+				.successHandler(memberLoginSuccessHandler)
+				.failureHandler(memberLoginFailHandler);
 	}
 	
 	@Autowired
@@ -45,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}*/
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		System.out.println("로그인 하였습니다.");
+		System.out.println("configureGlobal");
 		auth.userDetailsService(memberService);
 	}
 }
