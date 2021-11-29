@@ -17,6 +17,7 @@ import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -36,12 +37,15 @@ public class MemberLoginFailHandler implements AuthenticationFailureHandler {
         System.out.println("onAuthenticationFailure " + username);
 
         String loginFailMsg = "로그인에 실패하였습니다.";
-        if (exception instanceof InternalAuthenticationServiceException) {
-            loginFailMsg = "존재하지 않는 사용자입니다.";
+
+        if (exception instanceof LockedException) {
+            //로그인프로세스에서 3회이상일경우 던져준다.
+            loginFailMsg = exception.getMessage();
         } else if(exception instanceof BadCredentialsException) {
             //사용자가 있는 지점에서 처리해준다.
             loginFailMsg = failProcess(username);
-
+        } else if(exception instanceof InternalAuthenticationServiceException) {
+            loginFailMsg = exception.getMessage();
         }
         HttpSession session = (HttpSession)request.getSession();
         session.setAttribute("loginFailMsg", loginFailMsg);
@@ -64,6 +68,6 @@ public class MemberLoginFailHandler implements AuthenticationFailureHandler {
         }catch(Exception e) {
             e.printStackTrace();
         }
-        return "로그인에 실패하였습니다.";
+        return "로그인에 실패하였습니다. 횟수가 증가합니다.";
     }
 }
