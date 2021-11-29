@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
@@ -15,4 +16,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
 	long countByNameLike(String userName);
 	long countByName(String userName);
+
+	@Query(nativeQuery = true , value = "SELECT MAX(ID) FROM member")
+	long maxById();
 }
