@@ -114,12 +114,13 @@ public class MemberController {
 	}
 
 	//세션에 이전페이지 넣기
-	/*@GetMapping("/login")
+	@GetMapping("/login")
 	public String loginForm(HttpServletRequest req) {
 		String referer = req.getHeader("Referer");
 		req.getSession().setAttribute("prevPage", referer);
 		return "login";
-	}*/
+	}
+
 	//로그아웃
 	@GetMapping("/logout")
 	public String logoutPage(HttpServletRequest req , HttpServletResponse rep) {

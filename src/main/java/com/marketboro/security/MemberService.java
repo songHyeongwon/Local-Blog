@@ -17,8 +17,10 @@ public class MemberService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-
+		//로그인 성공 했을때
+		System.out.println("loadUserByUsername = " +username);
 		Member member = memberRepository.findByName(username).orElseThrow(RuntimeException::new);
+		System.out.println("loadUserByUsername = " +member.toString());
 		return new MyUserPrincipal(member);
 	}
 }
