@@ -16,7 +16,7 @@ class SecurityApplicationTests {
 	void contextLoads() {
 		for(int i = 0; i < 100; i++) {
 			Member member = new Member();
-			member.setId(				memberRepository.count()+1);
+			member.setId(				memberRepository.maxById()+1);
 			member.setName(				"song" + i);
 			member.setPassword(			("{noop}")+"test");
 			member.setContractNumber(	"010-9999-9999");
