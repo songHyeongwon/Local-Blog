@@ -54,7 +54,7 @@ public class MemberController {
 	@GetMapping("/save")
 	public String save(Map<String, Object> model , @RequestParam Map<String, String> param) {
 		Member member = new Member();
-		member.setId(				memberRepository.count()+1);
+		member.setId(				memberRepository.maxById()+1);
 		member.setName(				(String)param.get("name"));
 		member.setPassword(			("{noop}")+(String)param.get("password"));
 		member.setContractNumber(	(String)param.get("contractNumber"));
@@ -76,7 +76,7 @@ public class MemberController {
 	@GetMapping("/admin/saveAdmin")
 	public String saveAdmin(Map<String, Object> model , @RequestParam Map<String, String> param) {
 		Member member = new Member();
-		member.setId(				memberRepository.count()+1);
+		member.setId(				memberRepository.maxById()+1);
 		member.setName(				(String)param.get("name"));
 		member.setPassword(			("{noop}")+(String)param.get("password"));
 		member.setContractNumber(	(String)param.get("contractNumber"));
@@ -125,7 +125,7 @@ public class MemberController {
 	@GetMapping("/logout")
 	public String logoutPage(HttpServletRequest req , HttpServletResponse rep) {
 		new SecurityContextLogoutHandler().logout(req, rep , SecurityContextHolder.getContext().getAuthentication());
-		return "/";
+		return "/index";
 	}
 
 	/********************************************************************************************************************************************
