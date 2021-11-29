@@ -6,6 +6,8 @@ CREATE TABLE member (
                        contract_number VARCHAR(50) NOT NULL,
                        create_datetime TIMESTAMP NOT NULL,
                        update_datetime TIMESTAMP NOT NULL,
+                       fail_cnt BIGINT DEFAULT 0 NULL,
+                       last_fail_time TIMESTAMP NULL,
                        PRIMARY KEY (id)
 );
 

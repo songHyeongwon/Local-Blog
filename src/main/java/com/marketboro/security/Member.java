@@ -44,6 +44,12 @@ public class Member implements Serializable {
 	@Setter
 	protected LocalDateTime updateDatetime; // 수정일시
 
+	@Column(name="fail_cnt")
+	private Long failCnt; // 실패횟수
+
+	@Column(name="last_fail_time")
+	private LocalDateTime lastFailtime; //마지막 실패시간
+
 	public static Member builder(
 		@NotNull String name,
 		@NotNull String password) {
