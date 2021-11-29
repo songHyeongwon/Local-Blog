@@ -36,7 +36,7 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
 
         // 로그인 성공 메인화면으로
         if(member.get().getAuth().equals("ROLE_ADMIN")) {
-            response.sendRedirect("/main");//관리자 메인
+            response.sendRedirect("/admin/");//관리자 메인
         } else {
             response.sendRedirect("/main");//일반 유저 메인
         }
