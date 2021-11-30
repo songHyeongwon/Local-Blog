@@ -124,8 +124,8 @@ public class MemberController {
 	//로그아웃
 	@GetMapping("/logout")
 	public String logoutPage(HttpServletRequest req , HttpServletResponse rep) {
-		new SecurityContextLogoutHandler().logout(req, rep , SecurityContextHolder.getContext().getAuthentication());
-		return "/index";
+		//new SecurityContextLogoutHandler().logout(req, rep , SecurityContextHolder.getContext().getAuthentication());
+		return "/logout";
 	}
 
 	/********************************************************************************************************************************************

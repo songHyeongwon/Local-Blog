@@ -26,6 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	MemberLoginFailHandler memberLoginFailHandler;
 
+	@Autowired
+	MemberLogoutSuccessHandler memberLogoutSuccessHandler;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -40,9 +43,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/login") //프로세스 URL
 				//.defaultSuccessUrl("/main") //로그인 후
 				.successHandler(memberLoginSuccessHandler)
-				.failureHandler(memberLoginFailHandler);
+				.failureHandler(memberLoginFailHandler)
+				.and()
+				.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessHandler(memberLogoutSuccessHandler);
 	}
-	
+
 	@Autowired
 	private final MemberService memberService;
 
