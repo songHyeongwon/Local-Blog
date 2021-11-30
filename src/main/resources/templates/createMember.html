@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Marketboro Test Page</title>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <th:block th:include="/in_head.html"></th:block>
   <script th:inline="javascript">
     const message = /*[[ ${message} ]]*/;
     if(!$.isEmptyObject(message)) {
