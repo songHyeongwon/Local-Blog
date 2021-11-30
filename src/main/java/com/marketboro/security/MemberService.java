@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 @Slf4j
 @Service
@@ -22,10 +24,10 @@ public class MemberService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-		//로그인 성공 했을때
-		System.out.println("loadUserByUsername = " +username);
+		//로그인 내부
+		//System.out.println("loadUserByUsername = " +username);
 		Member member = memberRepository.findByName(username).orElseThrow(RuntimeException::new);
-		System.out.println("loadUserByUsername = " +member.toString());
+		//System.out.println("loadUserByUsername = " +member.toString());
 
 		//카운트와 시간을 검사해 미만이면 null 반환
 		String failCheck = failCntCheck(member);
@@ -42,8 +44,8 @@ public class MemberService implements UserDetailsService {
 		localDateTime = localDateTime.plusMinutes(10); //10분 후
 
 		if(member.getFailCnt() >= 3 && localDateTime.isAfter(LocalDateTime.now())) { //더 이후인11분 이상일때는 false
-			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
-			return "3회 이상 로그인에 실패하여 ID가 잠겼습니다. " + localDateTime.format(dateTimeFormatter).toString() + "이후에 다시 시도해주세요.";
+			//DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+			return "3회 이상 로그인에 실패하여 ID가 잠겼습니다. " + ChronoUnit.MINUTES.between(LocalDateTime.now(), localDateTime) + "분 이후에 다시 시도해주세요.";
 		} else {
 			return null;
 		}
