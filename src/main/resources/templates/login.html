@@ -5,30 +5,30 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Please sign in</title>
-    <th:block th:include="/in_head.html"></th:block>
+    <!--<th:block th:include="/in_head.html"></th:block>-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
-    <div>복사한 로그인 화면</div>
-    <div th:text="${session.loginFailMsg}"></div>
-    <div class="container">
-        <form class="login-form" method="POST">
-            <input type ="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="username" type="text" name="username" class="validate"/>
-                    <label for="username">username</label>
-                </div>
+<div>복사한 로그인 화면</div>
+<div th:text="${session.loginFailMsg}"></div>
+<div class="container">
+    <form class="login-form" method="POST">
+        <input type ="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="username" type="text" name="username" class="validate"/>
+                <label for="username">username</label>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" type="password" name="password" class="validate"/>
-                    <label for="password">Password</label>
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" name="password" class="validate"/>
+                <label for="password">Password</label>
             </div>
-            <input class="login-btn waves-effect waves-light btn" type="submit" value="로그인" />
-        </form>
-    </div>
+        </div>
+        <input class="login-btn waves-effect waves-light btn" type="submit" value="로그인" />
+    </form>
+</div>
 </body>
 </html>
