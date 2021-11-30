@@ -26,10 +26,10 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         String username = request.getParameter("username");
-        System.out.println("onAuthenticationSuccess " + username);
+        //System.out.println("onAuthenticationSuccess " + username);
 
         Optional<Member> member = memberRepository.findByName(username);
-        System.out.println("successProcess = "+member.get().toString());
+        //System.out.println("successProcess = "+member.get().toString());
         member.get().setFailCnt(0L);
         member.get().setLastFailtime(null);
         memberRepository.save(member.get());//로그인 성공으로 프로세스 다시 원복

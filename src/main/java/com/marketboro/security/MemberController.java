@@ -68,7 +68,7 @@ public class MemberController {
 			return "join";
 		}
 
-		System.out.println(member.toString());
+		//System.out.println(member.toString());
 		memberRepository.save(member);
 		return "index";
 	}
@@ -90,7 +90,7 @@ public class MemberController {
 			return "createMember";
 		}
 
-		System.out.println(member.toString());
+		//System.out.println(member.toString());
 		memberRepository.save(member);
 		return "main";
 	}
@@ -130,6 +130,7 @@ public class MemberController {
 
 	/********************************************************************************************************************************************
 	 * 여기서부터 유틸리티 함수모음
+	 * 유틸리티는 길어지면 별도 클래스로 빼려 했지만 크게 2가지밖에 없어 컨트롤러 안에 작성하였습니다.
 	 ********************************************************************************************************************************************/
 	//회원가입할 객체를 검사합니다.
 	public String memberCheck(Member member) {

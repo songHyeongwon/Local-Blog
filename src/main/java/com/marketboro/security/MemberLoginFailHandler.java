@@ -34,7 +34,7 @@ public class MemberLoginFailHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws ServletException, IOException {
         String username = request.getParameter("username");
-        System.out.println("onAuthenticationFailure " + username);
+        //System.out.println("onAuthenticationFailure " + username);
 
         String loginFailMsg = "로그인에 실패하였습니다.";
 
@@ -55,7 +55,7 @@ public class MemberLoginFailHandler implements AuthenticationFailureHandler {
     public String failProcess (String username) {
         try{
             Optional<Member> member = memberRepository.findByName(username);
-            System.out.println("failProcess = "+member.get().toString());
+            //System.out.println("failProcess = "+member.get().toString());
             if(member.get().getFailCnt() >= 3) {
                 LocalDateTime localDateTime = member.get().getLastFailtime();
                 DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
