@@ -1,18 +1,16 @@
-package com.marketboro.security;
+package com.marketboro.security.service;
 
-import com.sun.security.auth.UserPrincipal;
+import com.marketboro.security.security.MyUserPrincipal;
+import com.marketboro.security.been.Member;
+import com.marketboro.security.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.usertype.UserType;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 @Slf4j

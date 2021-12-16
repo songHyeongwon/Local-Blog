@@ -1,4 +1,4 @@
-package com.marketboro.security;
+package com.marketboro.security.been;
 
 import com.sun.istack.NotNull;
 import java.io.Serializable;

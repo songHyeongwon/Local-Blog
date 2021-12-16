@@ -1,5 +1,7 @@
 package com.marketboro.security;
 
+import com.marketboro.security.been.Member;
+import com.marketboro.security.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.marketboro.security;
+package com.marketboro.security.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

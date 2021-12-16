@@ -1,5 +1,7 @@
-package com.marketboro.security;
+package com.marketboro.security.security;
 
+import com.marketboro.security.been.Member;
+import com.marketboro.security.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -11,15 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service("loginSueeessHandler")
 @Component
 @RequiredArgsConstructor
 @Transactional
-public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
+public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     private final MemberRepository memberRepository;
 
