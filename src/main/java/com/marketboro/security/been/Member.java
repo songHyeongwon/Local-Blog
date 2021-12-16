@@ -35,6 +35,7 @@ public class Member implements Serializable {
 	private String auth;
 
 	private String contractNumber;
+	private String test;
 
 	@CreatedDate
 	@Setter
