@@ -1,9 +1,9 @@
-package com.marketboro.security.security;
+package com.myblog.security;
 
 import java.util.Collection;
 import java.util.Collections;
 
-import com.marketboro.security.been.Member;
+import com.myblog.been.Member;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

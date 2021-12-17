@@ -1,7 +1,7 @@
-package com.marketboro.security.security;
+package com.myblog.security;
 
-import com.marketboro.security.been.Member;
-import com.marketboro.security.repository.MemberRepository;
+import com.myblog.been.Member;
+import com.myblog.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;

@@ -1,8 +1,8 @@
-package com.marketboro.security.repository;
+package com.myblog.repository;
 
 import java.util.Optional;
 
-import com.marketboro.security.been.Member;
+import com.myblog.been.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

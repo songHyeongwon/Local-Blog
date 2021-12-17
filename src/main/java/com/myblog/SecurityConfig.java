@@ -1,9 +1,9 @@
-package com.marketboro.security;
+package com.myblog;
 
-import com.marketboro.security.security.LoginFailHandler;
-import com.marketboro.security.security.LoginSuccessHandler;
-import com.marketboro.security.security.LogoutSuccessHandler;
-import com.marketboro.security.service.MemberService;
+import com.myblog.security.LoginFailHandler;
+import com.myblog.security.LoginSuccessHandler;
+import com.myblog.security.LogoutSuccessHandler;
+import com.myblog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

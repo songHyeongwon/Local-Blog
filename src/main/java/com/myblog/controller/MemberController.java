@@ -1,12 +1,12 @@
-package com.marketboro.security.controller;
+package com.myblog.controller;
 
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.marketboro.security.repository.MemberRepository;
-import com.marketboro.security.been.Member;
+import com.myblog.repository.MemberRepository;
+import com.myblog.been.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

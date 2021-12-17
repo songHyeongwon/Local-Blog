@@ -1,8 +1,8 @@
-package com.marketboro.security.service;
+package com.myblog.service;
 
-import com.marketboro.security.security.MyUserPrincipal;
-import com.marketboro.security.been.Member;
-import com.marketboro.security.repository.MemberRepository;
+import com.myblog.security.MyUserPrincipal;
+import com.myblog.been.Member;
+import com.myblog.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.LockedException;
