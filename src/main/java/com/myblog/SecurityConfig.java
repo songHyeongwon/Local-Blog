@@ -34,8 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
-				.authorizeRequests()
-				.antMatchers("/**",  "/index**", "/join**", "/login**" ,"/save**" ,"/h2-console/**").permitAll() //전체 접근 허용
+				.csrf().disable()
+				.headers().frameOptions().disable();
+				//.authorizeRequests()
+				//.antMatchers("/**",  "/index**", "/join**", "/login**" ,"/save**" ,"/h2-console/**").permitAll() //전체 접근 허용
 				//.antMatchers("/user/*").hasRole("MEMBER")
 				//.antMatchers("/admin**").hasRole("ADMIN") //관리자만
 				//.anyRequest().authenticated()

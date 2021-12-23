@@ -1,7 +1,7 @@
-DROP TABLE member;
-DROP TABLE board;
-DROP TABLE board_desc;
-DROP TABLE menu;
+drop table if exists member;
+drop table if exists board;
+drop table if exists board_desc;
+drop table if exists menu;
 
 
 CREATE TABLE member (--글을 작성할수 있는 회원의 테이블
