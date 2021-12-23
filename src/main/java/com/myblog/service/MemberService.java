@@ -35,17 +35,18 @@ public class MemberService implements UserDetailsService {
 		return new MyUserPrincipal(member);
 	}
 	private String failCntCheck(Member member) {
-		LocalDateTime localDateTime = member.getLastFailtime();
-		//날짜가 없다면 실패한적이 없는것
-		if(localDateTime == null) return null;
-
-		localDateTime = localDateTime.plusMinutes(10); //10분 후
-
-		if(member.getFailCnt() >= 3 && localDateTime.isAfter(LocalDateTime.now())) { //더 이후인11분 이상일때는 false
-			//DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
-			return "3회 이상 로그인에 실패하여 ID가 잠겼습니다. " + ChronoUnit.MINUTES.between(LocalDateTime.now(), localDateTime) + "분 이후에 다시 시도해주세요.";
-		} else {
-			return null;
-		}
+//		LocalDateTime localDateTime = member.getLastFailtime();
+//		//날짜가 없다면 실패한적이 없는것
+//		if(localDateTime == null) return null;
+//
+//		localDateTime = localDateTime.plusMinutes(10); //10분 후
+//
+//		if(member.getFailCnt() >= 3 && localDateTime.isAfter(LocalDateTime.now())) { //더 이후인11분 이상일때는 false
+//			//DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+//			return "3회 이상 로그인에 실패하여 ID가 잠겼습니다. " + ChronoUnit.MINUTES.between(LocalDateTime.now(), localDateTime) + "분 이후에 다시 시도해주세요.";
+//		} else {
+//			return null;
+//		}
+		return null;
 	}
 }

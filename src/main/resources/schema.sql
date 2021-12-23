@@ -38,6 +38,3 @@ CREATE TABLE menu (--메뉴리스트
                        update_datetime TIMESTAMP NOT NULL, -- 수정일
                        PRIMARY KEY (id)
 );
-
-INSERT INTO member (name, password, auth, contract_number, create_datetime, update_datetime) VALUES
-('admin', '{noop}test', 'ROLE_MEMBER', '000-0000-0000', now(), now());

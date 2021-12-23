@@ -118,13 +118,6 @@ public class MemberController {
 		return "login";
 	}
 
-	//로그아웃
-	@GetMapping("/logout")
-	public String logoutPage(HttpServletRequest req , HttpServletResponse rep) {
-		//new SecurityContextLogoutHandler().logout(req, rep , SecurityContextHolder.getContext().getAuthentication());
-		return "/logout";
-	}
-
 	/********************************************************************************************************************************************
 	 * 여기서부터 유틸리티 함수모음
 	 * 유틸리티는 길어지면 별도 클래스로 빼려 했지만 크게 2가지밖에 없어 컨트롤러 안에 작성하였습니다.
@@ -148,17 +141,4 @@ public class MemberController {
 		Matcher m = p.matcher(psw);
 		return m.matches();
 	}
-
-	/*@GetMapping("/logout") //만들긴 했지만 기본 로그아웃 이용
-	public String loout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println(auth.toString());
-		if (auth != null) {
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return "index";
-	}*/
-
-
-	//출처: https://baejangho.com/entry/Spring-Security-Logout [호짱의 개발 블로그]
 }

@@ -35,20 +35,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http
 				.authorizeRequests()
-				.antMatchers("/",  "/index**", "/join**", "/login**" ,"/save**").permitAll() //전체 접근 허용
+				.antMatchers("/**",  "/index**", "/join**", "/login**" ,"/save**").permitAll() //전체 접근 허용
 				//.antMatchers("/user/*").hasRole("MEMBER")
-				.antMatchers("/admin**").hasRole("ADMIN") //관리자만
-				.anyRequest().authenticated()
-				.and().formLogin()
-				.loginPage("/login") //로그인 화면
-				.loginProcessingUrl("/login") //프로세스 URL
-				//.defaultSuccessUrl("/main") //로그인 후
-				.successHandler(memberLoginSuccessHandler)
-				.failureHandler(memberLoginFailHandler)
-				.and()
-				.logout()
-				.logoutUrl("/logout")
-				.logoutSuccessHandler(memberLogoutSuccessHandler);
+				//.antMatchers("/admin**").hasRole("ADMIN") //관리자만
+				//.anyRequest().authenticated()
+				//.and().formLogin()
+				//.loginPage("/login") //로그인 화면
+				//.loginProcessingUrl("/login") //프로세스 URL
+				//.defaultSuccessUrl("/admin") //로그인 후
+				//.successHandler(memberLoginSuccessHandler)
+				//.failureHandler(memberLoginFailHandler)
+				//.and()
+				//.logout()
+				//.logoutUrl("/index")
+				//.logoutSuccessHandler(memberLogoutSuccessHandler)
+				;
 	}
 
 	@Autowired

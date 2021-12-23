@@ -52,17 +52,17 @@ public class LoginFailHandler implements AuthenticationFailureHandler {
 
     public String failProcess (String username) {
         try{
-            Optional<Member> member = memberRepository.findByName(username);
-            //System.out.println("failProcess = "+member.get().toString());
-            if(member.get().getFailCnt() >= 3) {
-                LocalDateTime localDateTime = member.get().getLastFailtime();
-                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
-                return "3회 이상 로그인에 실패하여 ID가 잠겼습니다. " + localDateTime.plusMinutes(10).format(dateTimeFormatter).toString() + "이후에 다시 시도해주세요.";
-            } else {
-                member.get().setFailCnt(member.get().getFailCnt() + 1);
-                member.get().setLastFailtime(LocalDateTime.now());
-                memberRepository.save(member.get());
-            }
+//            Optional<Member> member = memberRepository.findByName(username);
+//            //System.out.println("failProcess = "+member.get().toString());
+//            if(member.get().getFailCnt() >= 3) {
+//                LocalDateTime localDateTime = member.get().getLastFailtime();
+//                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+//                return "3회 이상 로그인에 실패하여 ID가 잠겼습니다. " + localDateTime.plusMinutes(10).format(dateTimeFormatter).toString() + "이후에 다시 시도해주세요.";
+//            } else {
+//                member.get().setFailCnt(member.get().getFailCnt() + 1);
+//                member.get().setLastFailtime(LocalDateTime.now());
+//                memberRepository.save(member.get());
+//            }
         }catch(Exception e) {
             e.printStackTrace();
         }

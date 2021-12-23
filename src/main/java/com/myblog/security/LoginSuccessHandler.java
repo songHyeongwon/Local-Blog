@@ -25,21 +25,21 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String username = request.getParameter("username");
-        //System.out.println("onAuthenticationSuccess " + username);
-
-        Optional<Member> member = memberRepository.findByName(username);
-        //System.out.println("successProcess = "+member.get().toString());
-        member.get().setFailCnt(0L);
-        member.get().setLastFailtime(null);
-        memberRepository.save(member.get());//로그인 성공으로 프로세스 다시 원복
-
-        // 로그인 성공 메인화면으로
-        if(member.get().getAuth().equals("ROLE_ADMIN")) {
-            response.sendRedirect("/admin/");//관리자 메인
-        } else {
-            response.sendRedirect("/main");//일반 유저 메인
-        }
+//        String username = request.getParameter("username");
+//        //System.out.println("onAuthenticationSuccess " + username);
+//
+//        Optional<Member> member = memberRepository.findByName(username);
+//        //System.out.println("successProcess = "+member.get().toString());
+//        member.get().setFailCnt(0L);
+//        member.get().setLastFailtime(null);
+//        memberRepository.save(member.get());//로그인 성공으로 프로세스 다시 원복
+//
+//        // 로그인 성공 메인화면으로
+//        if(member.get().getAuth().equals("ROLE_ADMIN")) {
+//            response.sendRedirect("/admin/");//관리자 메인
+//        } else {
+//            response.sendRedirect("/main");//일반 유저 메인
+//        }
 
     }
 }
