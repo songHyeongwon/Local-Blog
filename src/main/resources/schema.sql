@@ -1,3 +1,9 @@
+DROP TABLE member;
+DROP TABLE board;
+DROP TABLE board_desc;
+DROP TABLE menu;
+
+
 CREATE TABLE member (--글을 작성할수 있는 회원의 테이블
                        id BIGINT AUTO_INCREMENT,
                        name VARCHAR(50) NOT NULL,
