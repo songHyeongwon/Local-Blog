@@ -5,11 +5,21 @@
   <title>Marketboro Test Page</title>
   <th:block th:include="/in_head.html"></th:block>
 </head>
+
 <body>
 
-<h1>Marketboro Test Page</h1>
-<h2>메인 시작화면</h2>
-<a href="/join">회원가입</a>
-<a href="/login">로그인</a>
+  <header>
+    <th:block th:include="/header.html"></th:block>
+  </header>
+  <nav>
+    <th:block th:include="/menu.html"></th:block>
+  </nav>
+  <main>
+    <th:block th:include="/board.html"></th:block>
+  </main>
+  <footer>
+    <th:block th:include="/footer.html"></th:block>
+  </footer>
 </body>
+
 </html>

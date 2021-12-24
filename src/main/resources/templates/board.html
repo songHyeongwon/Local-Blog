@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <th:block th:include="/in_head.html"></th:block>
+</head>
+<body>
+
+<h1>일단 보드리드스 뽑아봄</h1>
+<h3>총건수 : </h3>
+<input type="text" name="name" id="userName" th:value="${findName}"/> <button id="search">조회</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>순번</th>
+        <th>id</th>
+        <th>이름</th>
+        <th>권한</th>
+        <th>연락처</th>
+        <th>가입일</th>
+        <th>수정일</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<ul class="pagination justify-content-center">
+    <li class="page-item">
+        <a id="fristPage">시작</a>
+    </li>
+   <!-- <li th:each="i : ${#numbers.sequence(startPage , endPage)}" class="page-item" th:classappend="${i == members.pageable.pageNumber} ? 'disabled'">
+        <a class="page" th:text="${i+1}"></a>
+    </li>-->
+    <li class="page-item">
+        <a id="lsatPage">종료</a>
+    </li>
+</ul>
+</body>
+</html>
