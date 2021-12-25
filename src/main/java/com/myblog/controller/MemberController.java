@@ -13,22 +13,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/member**")
 public class MemberController {
 
 	private final MemberRepository memberRepository;
-
-	@GetMapping({"/", "index"})
-	public String mainPage(Map<String, Object> model) {
-		return "index";
-	}
 
 	@GetMapping("/user/list")
 	public String users(Map<String, Object> model, @RequestParam Map<String, String> param , @PageableDefault(size = 5) Pageable pageable) {
