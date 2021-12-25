@@ -3,29 +3,27 @@ package com.myblog.been;
 import com.sun.istack.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@Table(name = "member")
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "MEMBER")
+@SequenceGenerator(
+		name="MEMBER_SEQ_GEN", //시퀀스 제너레이터 이름
+		sequenceName="MEMBER_SEQ" //시퀀스 이름
+)
 @Builder(builderMethodName = "entityBuilder", toBuilder = true)
+@AllArgsConstructor //모든 필드 값을 파라미터로 받는 생성자를 만듦
+@NoArgsConstructor //파라미터가 없는 기본 생성자를 생성
+@Data
 public class Member implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)//의존성 시스템
+	@GeneratedValue(strategy = GenerationType.SEQUENCE
+	,generator = "MEMBER_SEQ_GEN")//의존성 시스템
 	private Long id;
 
 	private String name;

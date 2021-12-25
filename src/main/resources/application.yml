@@ -7,7 +7,7 @@ spring:
     password: 1234
     #schema: classpath:db/h2/schema.sql
     #data: classpath:db/h2/data.sql
-    #initialization-mode: always # 최초실행에만 넣어주고 다음부터는 안넣어도 됨
+    # initialization-mode: always # 최초실행에만 넣어주고 다음부터는 안넣어도 됨
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
