@@ -3,4 +3,4 @@ INSERT INTO member (name, password, auth, contract_number, create_datetime, upda
 
 
 INSERT INTO MENU (menuName, menuUrl, menuParentId, depth, menuSort, create_datetime,update_datetime) VALUES
-('전체', 'aaa', null, null, now(), now());
+('전체', 'aaa', null, null, 0 , now(), now());

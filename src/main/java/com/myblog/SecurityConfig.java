@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Slf4j
@@ -34,23 +36,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
-				.csrf().disable()
-				.headers().frameOptions().disable();
-				//.authorizeRequests()
-				//.antMatchers("/**",  "/index**", "/join**", "/login**" ,"/save**" ,"/h2-console/**").permitAll() //전체 접근 허용
+				.authorizeRequests()
+
+				//페이지 권한 설정
+				.antMatchers("/**",  "/index**" , "/login**").permitAll() //전체 접근 허용
 				//.antMatchers("/user/*").hasRole("MEMBER")
-				//.antMatchers("/admin**").hasRole("ADMIN") //관리자만
-				//.anyRequest().authenticated()
-				//.and().formLogin()
+				.antMatchers("/admin**").hasRole("ADMIN") //관리자만
+				
+				//로그인 설정
+				.and().formLogin()
 				//.loginPage("/login") //로그인 화면
 				//.loginProcessingUrl("/login") //프로세스 URL
-				//.defaultSuccessUrl("/admin") //로그인 후
+				.defaultSuccessUrl("/index") //로그인 후
 				//.successHandler(memberLoginSuccessHandler)
 				//.failureHandler(memberLoginFailHandler)
-				//.and()
-				//.logout()
-				//.logoutUrl("/index")
+				.permitAll()
+
+				//로그아웃 설정
+				.and()
+				.logout()
+				//.logoutUrl("/logout")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/index")
 				//.logoutSuccessHandler(memberLogoutSuccessHandler)
+				
+				//예외처리
+				.and()
+				.exceptionHandling().accessDeniedPage("/index")
 				;
 	}
 

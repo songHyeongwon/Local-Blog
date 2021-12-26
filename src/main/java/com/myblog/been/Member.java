@@ -13,7 +13,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Table(name = "MEMBER")
 @SequenceGenerator(
 		name="MEMBER_SEQ_GEN", //시퀀스 제너레이터 이름
-		sequenceName="MEMBER_SEQ" //시퀀스 이름
+		sequenceName="MEMBER_SEQ", //시퀀스 이름
+		allocationSize = 1 //시퀀스 크기
 )
 @Builder(builderMethodName = "entityBuilder", toBuilder = true)
 @AllArgsConstructor //모든 필드 값을 파라미터로 받는 생성자를 만듦

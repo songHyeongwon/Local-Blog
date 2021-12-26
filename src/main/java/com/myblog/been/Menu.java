@@ -18,6 +18,7 @@ import java.util.List;
 @SequenceGenerator(
         name="MENU_SEQ_GEN", //시퀀스 제너레이터 이름
         sequenceName="MENU_SEQ" //시퀀스 이름
+        ,allocationSize = 1 //시퀀스 크기
 )
 @AllArgsConstructor //모든 필드 값을 파라미터로 받는 생성자를 만듦
 @NoArgsConstructor //파라미터가 없는 기본 생성자를 생성
