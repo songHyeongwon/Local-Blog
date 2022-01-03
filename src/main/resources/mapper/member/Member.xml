@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myblog.mapper.MemberMapper">
+    <select id="findMapperMember" parameterType="com.myblog.been.Member" resultType="com.myblog.been.Member">
+        SELECT * FROM Member WHERE name like #{name}
+    </select>
+</mapper>

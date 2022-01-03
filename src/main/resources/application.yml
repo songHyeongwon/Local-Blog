@@ -23,4 +23,5 @@ server:
   port: 8080
   servlet:
     context-path: /
-
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
