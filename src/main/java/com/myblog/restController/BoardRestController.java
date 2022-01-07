@@ -10,24 +10,24 @@ public class BoardRestController {
 
     //기동
     @PutMapping
-    public String moveElevator() {
+    public String updateBoard() {
 
         return "";
     }
     //상태확인
     @GetMapping
-    public String getElevator() {
+    public String selectBoard() {
         return "";
     }
 
     //비상정지
     @DeleteMapping
-    public String stopElevator() {
+    public String deleteBoard() {
         return "";
     }
     //유저 요청
     @PostMapping
-    public String savePeople(@RequestBody Map<String, Object> param) {
+    public String insertBoard(@RequestBody Map<String, Object> param) {
         return "";
     }
 }
