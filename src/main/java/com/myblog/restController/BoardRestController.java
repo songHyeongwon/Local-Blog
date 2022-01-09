@@ -17,7 +17,7 @@ public class BoardRestController {
     //상태확인
     @GetMapping
     public String selectBoard() {
-        return "";
+        return "뭔가나오나?";
     }
 
     //비상정지

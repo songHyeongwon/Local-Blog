@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AndRequestMatcher;
@@ -23,14 +24,19 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	LoginSuccessHandler memberLoginSuccessHandler;
+	//@Autowired
+	//LoginSuccessHandler memberLoginSuccessHandler;
 
-	@Autowired
-	LoginFailHandler memberLoginFailHandler;
+	//@Autowired
+	//LoginFailHandler memberLoginFailHandler;
 
-	@Autowired
-	LogoutSuccessHandler memberLogoutSuccessHandler;
+	//@Autowired
+	//LogoutSuccessHandler memberLogoutSuccessHandler;
+
+	@Override
+	public void configure(WebSecurity webSecurity) throws Exception {
+		webSecurity.ignoring().antMatchers("/resources/**", "/css/**", "/fonts/**", "/js/**", "/less/**", "/scss/**", "/images/**", "/webjars/**");
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -39,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 
 				//페이지 권한 설정
-				.antMatchers("/**",  "/index**" , "/login**").permitAll() //전체 접근 허용
+				.antMatchers("/**").permitAll() //전체 접근 허용
 				//.antMatchers("/user/*").hasRole("MEMBER")
 				.antMatchers("/admin**").hasRole("ADMIN") //관리자만
 				

@@ -18,6 +18,7 @@ import java.util.Map;
 public class MainController {
     @GetMapping({"/", "index"})
     public String mainPage(Map<String, Object> model) {
+        System.out.println("들어오냐?");
         return "index";
     }
 

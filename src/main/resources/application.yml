@@ -1,5 +1,7 @@
 
 spring:
+  resources:
+    static-locations: classpath:/static/**
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:file:./src/main/resources/testdb
@@ -19,9 +21,12 @@ spring:
     console:
       enabled: true
     path: /admin/h2-console
+  mustache:
+    suffix: .html
 server:
   port: 8080
-  servlet:
-    context-path: /
+#  servlet:
+#    context-path: /
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
+
