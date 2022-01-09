@@ -5,29 +5,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/boardRest")
+@RequestMapping("/menuRest")
 public class MenuRestController {
 
     //기동
     @PutMapping
-    public String updateBoard() {
+    public String updateMenu() {
 
         return "";
     }
     //상태확인
     @GetMapping
-    public String selectBoard() {
+    public String selectMenu() {
         return "";
     }
 
     //비상정지
     @DeleteMapping
-    public String deleteBoard() {
+    public String deleteMenu() {
         return "";
     }
     //유저 요청
     @PostMapping
-    public String insertBoard(@RequestBody Map<String, Object> param) {
+    public String insertMenu(@RequestBody Map<String, Object> param) {
         return "";
     }
 }
