@@ -17,12 +17,13 @@
         <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
+                <!-- Side widgets-->
+                <th:block th:include="/blogDiv/side.html"></th:block>
                 <!-- Blog entries-->
                 <th:block th:include="/blogDiv/list.html"></th:block>
                 <!-- Post content-->
                 <th:block th:include="/blogDiv/board.html"></th:block>
-                <!-- Side widgets-->
-                <th:block th:include="/blogDiv/side.html"></th:block>
+
             </div>
         </div>
         <!-- Footer-->
