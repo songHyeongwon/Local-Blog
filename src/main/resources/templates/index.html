@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>마이 블로그 테스트 페이지</title>
-  <th:block th:include="/include.html"></th:block>
-</head>
-
-<body>
-  <a sec:authorize="isAuthenticated()" id="logout-text" href="/logout">
-    로그아웃
-  </a>
-  <a sec:authorize="!isAuthenticated()" id="login-text" href="/login">
-    로그인
-  </a>
-  <header>
-    <th:block th:include="/blogDiv/header.html"></th:block>
-  </header>
-  <nav>
-    <th:block th:include="/blogDiv/menu.html"></th:block>
-  </nav>
-  <main>
-    <th:block th:include="/blogDiv/board.html"></th:block>
-  </main>
-  <footer>
-    <th:block th:include="/blogDiv/footer.html"></th:block>
-  </footer>
-  <img src="/img/ico.jpg"/>
-  <img src="/img/ttt.PNG"/>
-
-</body>
-
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Blog Post - Start Bootstrap Template</title>
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <th:block th:include="/blogDiv/menu.html"></th:block>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <th:block th:include="/blogDiv/header.html"></th:block>
+        </header>
+        <!-- Page content-->
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Blog entries-->
+                <th:block th:include="/blogDiv/list.html"></th:block>
+                <!-- Post content-->
+                <th:block th:include="/blogDiv/board.html"></th:block>
+                <!-- Side widgets-->
+                <th:block th:include="/blogDiv/side.html"></th:block>
+            </div>
+        </div>
+        <!-- Footer-->
+        <th:block th:include="/blogDiv/footer.html"></th:block>
+    </body>
 </html>
