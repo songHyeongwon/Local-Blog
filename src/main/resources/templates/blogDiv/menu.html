@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>menu</title>
@@ -16,6 +16,10 @@
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                    <li class="nav-item">
+                        <a sec:authorize="isAuthenticated()" id="logout-text" href="/logout" class="nav-link active" aria-current="page">로그아웃</a>
+                        <a sec:authorize="!isAuthenticated()" id="login-text" href="/login" class="nav-link active" aria-current="page">로그인</a>
+                    </li>
                 </ul>
             </div>
         </div>
