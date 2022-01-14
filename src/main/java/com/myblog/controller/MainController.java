@@ -7,6 +7,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,22 +18,16 @@ import java.util.Map;
 @RequestMapping("/")
 public class MainController {
     @GetMapping({"/", "index"})
-    public String mainPage(Map<String, Object> model) {
-        System.out.println("mainPage");
+    public String mainPage(Map<String, Object> model, @RequestParam Map<String, String> param) {
+
+        //메인 페이지 처리
+        String mainPage = param.get("mainPage");
+        if (mainPage == null) {
+            mainPage = "list";
+        }
+        mainPage = "/blogDiv/" + mainPage + ".html";
+        model.put("mainPage", mainPage);
+        System.out.println("mainPage = " + mainPage);
         return "index";
     }
-
-//    @GetMapping({"login"})
-//    public String loginPage(Map<String, Object> model) {
-//        return "login";
-//    }
-
-//    @GetMapping({"logout"})
-//    public String logoutPage(HttpServletRequest request, HttpServletResponse response , Map<String, Object> model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if(authentication != null){
-//            new SecurityContextLogoutHandler().logout(request,response,authentication);
-//        }
-//        return "index";
-//    }
 }

@@ -21,12 +21,8 @@
                 <!-- Side widgets-->
                 <th:block th:include="/blogDiv/side.html"></th:block>
                 <!-- Blog entries-->
-                <th:block th:include="/blogDiv/list.html"></th:block>
-                <!-- Post content-->
-                <th:block th:include="/blogDiv/board.html"></th:block>
-
-                <th:block th:include="/blogDiv/write.html"></th:block>
-
+                <th:block th:include="${mainPage}"></th:block>
+                <!-- list.html board.html write.html -->
             </div>
         </div>
         <!-- Footer-->
