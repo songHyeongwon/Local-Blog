@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -25,7 +26,7 @@ public class MainController {
         if (mainPage == null) {
             mainPage = "list";
         }
-        mainPage = "/blogDiv/" + mainPage + ".html";
+        mainPage = "/blogDiv/" + mainPage.toLowerCase() + ".html";
         model.put("mainPage", mainPage);
         System.out.println("mainPage = " + mainPage);
         return "index";
