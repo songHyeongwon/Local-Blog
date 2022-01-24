@@ -12,6 +12,9 @@ function userAction(method , param) {
         type : method,            // HTTP method type(GET, POST) 형식이다.
         url : URL,      // 컨트롤러에서 대기중인 URL 주소이다.
         data : param,            // Json 형식의 데이터이다.
+        beforeSend : function(xhr) {
+            xhr.setRequestHeader('${_csrf.parameterName}',  '${_csrf.token}');
+        },
         success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
             result = res.responseText;
         },
@@ -19,7 +22,7 @@ function userAction(method , param) {
             result = "실패";
         }
     });
-
+    return result;
 }
 
 $(document).ready(function() {
@@ -38,6 +41,6 @@ $(document).ready(function() {
             menuId : $("#menuId").val(),
             text : $('#summernote').summernote('code'),
         }
-        alert(userAction("Post" , obj));
+        alert(userAction("POST" , obj));
     });
 });

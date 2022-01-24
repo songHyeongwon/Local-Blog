@@ -6,6 +6,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Api/boardRest")
+//, method={RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE, RequestMethod.PUT}
 public class BoardRestController {
 
     //기동
@@ -17,7 +18,7 @@ public class BoardRestController {
     //상태확인
     @GetMapping
     public String selectBoard() {
-        System.out.println("인서트");
+        System.out.println("selectBoard");
         return "뭔가나오나?";
     }
 
@@ -26,9 +27,12 @@ public class BoardRestController {
     public String deleteBoard() {
         return "";
     }
+
+
     //유저 요청
     @PostMapping
     public String insertBoard(@RequestBody Map<String, Object> param) {
+        System.out.println("insertBoard");
         String title = (String)param.get("title");
         String menuId = (String)param.get("menuId");
         String text = (String)param.get("text");

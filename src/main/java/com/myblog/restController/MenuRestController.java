@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/menuRest")
+@RequestMapping("/Api/menuRest")
 public class MenuRestController {
 
     //기동

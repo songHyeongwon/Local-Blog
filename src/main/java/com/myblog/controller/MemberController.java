@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 
 
-@Controller
-@RequiredArgsConstructor
-@RequestMapping("/member**")
+//@Controller
+//@RequiredArgsConstructor
+//@RequestMapping("/member**")
 public class MemberController {
 
-	private final MemberRepository memberRepository;
+	/*private final MemberRepository memberRepository;
 
 	@GetMapping("/user/list")
 	public String users(Map<String, Object> model, @RequestParam Map<String, String> param , @PageableDefault(size = 5) Pageable pageable) {
@@ -112,14 +112,14 @@ public class MemberController {
 		String referer = req.getHeader("Referer");
 		req.getSession().setAttribute("prevPage", referer);
 		return "login";
-	}
+	}*/
 
 	/********************************************************************************************************************************************
 	 * 여기서부터 유틸리티 함수모음
 	 * 유틸리티는 길어지면 별도 클래스로 빼려 했지만 크게 2가지밖에 없어 컨트롤러 안에 작성하였습니다.
 	 ********************************************************************************************************************************************/
 	//회원가입할 객체를 검사합니다.
-	public String memberCheck(Member member) {
+	/*public String memberCheck(Member member) {
 		//1. 동일ID여부 검사
 		if(memberRepository.countByName(member.getName()) > 0) {
 			return "동일한 ID가 존재합니다.";
@@ -136,5 +136,5 @@ public class MemberController {
 		Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&]{4,}");
 		Matcher m = p.matcher(psw);
 		return m.matches();
-	}
+	}*/
 }
