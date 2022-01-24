@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/boardRest")
+@RequestMapping("/Api/boardRest")
 public class BoardRestController {
 
     //기동
@@ -17,6 +17,7 @@ public class BoardRestController {
     //상태확인
     @GetMapping
     public String selectBoard() {
+        System.out.println("인서트");
         return "뭔가나오나?";
     }
 
@@ -28,6 +29,14 @@ public class BoardRestController {
     //유저 요청
     @PostMapping
     public String insertBoard(@RequestBody Map<String, Object> param) {
-        return "";
+        String title = (String)param.get("title");
+        String menuId = (String)param.get("menuId");
+        String text = (String)param.get("text");
+
+        System.out.println("title = " + title);
+        System.out.println("menuId = " + menuId);
+        System.out.println("text = " + text);
+
+        return "오우 반환되었습니다.";
     }
 }

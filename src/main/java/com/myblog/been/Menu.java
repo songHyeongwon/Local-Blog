@@ -26,7 +26,7 @@ public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE
             ,generator = "MENU_SEQ_GEN")//의존성 시스템
-    private long id;
+    private long menuId;
     private String menuName;
     private String menuUrl;
 

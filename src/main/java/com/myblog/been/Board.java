@@ -27,7 +27,7 @@ public class Board {
     private long boardId;
 
     private String title;
-
+    private long menuId;
     @CreatedDate
     @Setter
     protected LocalDateTime createDatetime; // 등록일시

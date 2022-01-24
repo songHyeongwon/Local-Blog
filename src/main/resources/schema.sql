@@ -24,6 +24,7 @@ CREATE TABLE MEMBER (--글을 작성할수 있는 회원의 테이블
 CREATE TABLE BOARD (--게시글 내용
                        boardId BIGINT AUTO_INCREMENT, -- 게시글 ID
                        title VARCHAR(500) NOT NULL, -- 글제목
+                       menuId BIGINT AUTO_INCREMENT, --메뉴ID
                        create_datetime TIMESTAMP NOT NULL, -- 생성일
                        update_datetime TIMESTAMP NOT NULL, -- 수정일
                        PRIMARY KEY (boardId)
@@ -38,7 +39,7 @@ CREATE TABLE BOARD_DESC (--게시글 상세
                        PRIMARY KEY (board_descId)
 );
 CREATE TABLE MENU (--메뉴리스트
-                       id BIGINT AUTO_INCREMENT, --메뉴ID
+                       menuId BIGINT AUTO_INCREMENT, --메뉴ID
                        menuName VARCHAR(500) NOT NULL, -- 메뉴명
                        menuUrl VARCHAR(500) NOT NULL, --메뉴의 URL
                        menuParentId BIGINT NULL, --부모 메뉴 ID
@@ -46,7 +47,7 @@ CREATE TABLE MENU (--메뉴리스트
                        menuSort BIGINT, -- 메뉴의 정렬 기준
                        create_datetime TIMESTAMP NOT NULL, -- 생성일
                        update_datetime TIMESTAMP NOT NULL, -- 수정일
-                       PRIMARY KEY (id)
+                       PRIMARY KEY (menuId)
 );
 
 CREATE SEQUENCE MEMBER_SEQ START WITH 1 INCREMENT BY 1;

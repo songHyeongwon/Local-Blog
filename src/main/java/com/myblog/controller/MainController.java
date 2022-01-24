@@ -15,7 +15,6 @@ import java.util.Locale;
 import java.util.Map;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/")
 public class MainController {
     @GetMapping({"/", "index"})

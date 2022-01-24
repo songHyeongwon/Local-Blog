@@ -1,10 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <script src="js/write.js"></script>
     <div class="col-lg-8">
-        <div id="summernote"><p>Hello Summernote</p></div>
-        <script>
-            $(document).ready(function() {
-                $('#summernote').summernote();
-            });
-        </script>
+        <input type="text" class="form-control" placeholder="제목을 입력하세요." name="title" id="title"/>
+        <select class="form-control" id="menuId" name="menu">
+            <option value="">전체</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <div id="summernote"></div>
+        <button class="btn btn-primary" style="width: 100%; margin-bottom: 20px;" id="writeSummit">저장</button>
     </div>
 </html>
