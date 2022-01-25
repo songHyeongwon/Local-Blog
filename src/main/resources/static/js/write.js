@@ -2,23 +2,21 @@ const URL = "http://"+location.host + "/Api/boardRest";
 
 function userAction(method , param) {
     if(!method) return false;
-    /*var xhttp = new XMLHttpRequest();
-    xhttp.open(method, URL, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify(param));
-    return xhttp.responseText;*/
     var result = "";
+    var header = $("meta[name='_csrf_header']").attr("content");
+    var token = $("meta[name='_csrf']").attr("content");
     $.ajax({
         type : method,            // HTTP method type(GET, POST) 형식이다.
         url : URL,      // 컨트롤러에서 대기중인 URL 주소이다.
-        data : param,            // Json 형식의 데이터이다.
+        data : JSON.stringify(param),            // Json 형식의 데이터이다.
+        contentType : 'application/json; charset=UTF-8',
         beforeSend : function(xhr) {
-            xhr.setRequestHeader('${_csrf.parameterName}',  '${_csrf.token}');
+            xhr.setRequestHeader(header,  token);
         },
-        success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-            result = res.responseText;
+        success : function(res){
+            result = res;
         },
-        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+        error : function(XMLHttpRequest, textStatus, errorThrown){
             result = "실패";
         }
     });
