@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**").permitAll() //전체 접근 허용
 				//.antMatchers("/user/*").hasRole("MEMBER")
 				.antMatchers("/admin**").hasRole("ADMIN") //관리자만
-
+				//api 예외 경로 추가
 				.and()
 				.csrf()
 				.ignoringAntMatchers("/Api/boardRest")
