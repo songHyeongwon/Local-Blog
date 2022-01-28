@@ -1,13 +1,20 @@
 package com.myblog.restController;
 
+import com.myblog.been.Board;
+import com.myblog.been.BoardDesc;
+import com.myblog.repository.BoardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/Api/boardRest")
 //, method={RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE, RequestMethod.PUT}
 public class BoardRestController {
+    @Autowired
+    BoardRepository boardRepository;
 
     //기동
     @PutMapping
@@ -40,7 +47,20 @@ public class BoardRestController {
         System.out.println("title = " + title);
         System.out.println("menuId = " + menuId);
         System.out.println("text = " + text);
+        Board board = new Board();
+        board.setTitle(title);
+        board.setMenuId(Integer.parseInt(menuId));
+        board.setCreateDatetime(LocalDateTime.now());
+        board.setUpdateDatetime(LocalDateTime.now());
 
-        return "오우 반환되었습니다.";
+        BoardDesc boardDesc = new BoardDesc();
+        boardDesc.setCreateDatetime(LocalDateTime.now());
+        boardDesc.setUpdateDatetime(LocalDateTime.now());
+        boardDesc.setText(text);
+
+        board.setBoardDesc(boardDesc);
+        boardRepository.save(board);
+
+        return "Y";
     }
 }

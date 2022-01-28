@@ -22,21 +22,21 @@ CREATE TABLE MEMBER (--글을 작성할수 있는 회원의 테이블
 );
 
 CREATE TABLE BOARD (--게시글 내용
-                       boardId BIGINT AUTO_INCREMENT, -- 게시글 ID
+                       BOARD_ID BIGINT AUTO_INCREMENT, -- 게시글 ID
                        title VARCHAR(500) NOT NULL, -- 글제목
-                       menuId BIGINT AUTO_INCREMENT, --메뉴ID
+                       MENU_ID BIGINT AUTO_INCREMENT, --메뉴ID
                        create_datetime TIMESTAMP NOT NULL, -- 생성일
                        update_datetime TIMESTAMP NOT NULL, -- 수정일
-                       PRIMARY KEY (boardId)
+                       PRIMARY KEY (BOARD_ID)
 );
 
 CREATE TABLE BOARD_DESC (--게시글 상세
-                       board_descId BIGINT AUTO_INCREMENT, -- 게시글 상세 ID
-                       boardId BIGINT AUTO_INCREMENT, -- 게시글 ID
+                       BOARD_DESC_ID BIGINT AUTO_INCREMENT, -- 게시글 상세 ID
+                       board_Id BIGINT AUTO_INCREMENT, -- 게시글 ID
                        text VARCHAR(2000) NOT NULL, --글 내용 차후 html 태그로 변경할것
                        create_datetime TIMESTAMP NOT NULL, --생성일
                        update_datetime TIMESTAMP NOT NULL, --수정일
-                       PRIMARY KEY (board_descId)
+                       PRIMARY KEY (BOARD_DESC_ID)
 );
 CREATE TABLE MENU (--메뉴리스트
                        menuId BIGINT AUTO_INCREMENT, --메뉴ID

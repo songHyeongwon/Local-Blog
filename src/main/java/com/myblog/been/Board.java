@@ -36,7 +36,7 @@ public class Board {
     @Setter
     protected LocalDateTime updateDatetime; // 수정일시
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinTable( name ="BOARD_DESC",//조인 테이블명
                 joinColumns = @JoinColumn(name="boardId"),//외래키
                 inverseJoinColumns = @JoinColumn(name = "boardId") //반대 테이블의 외래키
